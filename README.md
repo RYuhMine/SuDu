@@ -7,7 +7,7 @@ Download a source code of SuDu first.
 Ubuntu Linux (tested on Ubuntu with gcc 4.6.3)
 
 ## Toolchain/Other
-The device uses '''OABI''' (Old ABI) syscall convention (<code>__NR_SYSCALL_BASE = 0x900000</code>). Standard glibc-based toolchains will not work due to incompatibility with Linux 2.6.22. The dump tool must be compiled '''without any libc''', using raw syscalls.
+The device uses OABI (Old ABI) syscall convention (<code>__NR_SYSCALL_BASE = 0x900000</code>). Standard glibc-based toolchains will not work due to incompatibility with Linux 2.6.22. The dump tool must be compiled without any libc, using raw syscalls.
 
 ## Required compiler:
 arm-linux-gnueabi-gcc (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3
