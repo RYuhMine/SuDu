@@ -16,14 +16,7 @@ arm-linux-gnueabi-gcc (Ubuntu/Linaro 4.6.3-1ubuntu5) 4.6.3
 <pre>
 sudo apt install gcc-arm-linux-gnueabi binutils-arm-linux-gnueabi
 </pre>
-Linux Kernel Headers:<br>
-Required for correct MTD ioctl values. Must use headers from Linux 2.6.22:
-<pre>
-wget https://cdn.kernel.org/pub/linux/kernel/v2.6/linux-2.6.22.tar.bz2
-tar -xf linux-2.6.22.tar.bz2
-cd linux-2.6.22
-make ARCH=arm include/linux/version.h
-</pre>
+
 # Compilation process
 Use the following command to compile this program:
 <pre>
