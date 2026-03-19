@@ -174,18 +174,17 @@ static uint32_t read_cp15(int op1, int crn, int crm, int op2) {
 void show_sdcard_space() {
     struct statfs_t st;
     my_memset(&st, 0, sizeof(st));
-    int r = sys_statfs("/sdcard", &st);
-    if (r < 0) {
-        print("Cannot get SD card info\n");
+    if (sys_statfs("/sdcard", &st) < 0) {
+        print("SD: unknown\n");
         return;
     }
-    uint32_t free_mb  = my_div(st.f_bavail * my_div(st.f_bsize, 1024), 1024);
-    uint32_t total_mb = my_div(st.f_blocks * my_div(st.f_bsize, 1024), 1024);
-    print("SD card: ");
-    print_num(free_mb);
-    print("MB free / ");
-    print_num(total_mb);
-    print("MB total\n");
+    print("SD free blocks: ");
+    print_num(st.f_bavail);
+    print(" / ");
+    print_num(st.f_blocks);
+    print(" (block size: ");
+    print_num(st.f_bsize);
+    print(")\n");
 }
 
 void dump_cpu_regs() {
@@ -552,7 +551,7 @@ void show_about() {
     print("\n");
     print("===============================================================\n");
     print("  SuDu - Hardware Dump Utility\n");
-    print("  Version: v1.4\n");
+    print("  Version: v1.4*\n");
     print("  Target: Google Sooner (HTC EXCA300)\n");
     print("  CPU: ARM926EJ-S / OMAP850\n");
     print("  Built with: arm-linux-gnueabi-gcc\n");
@@ -564,7 +563,7 @@ void show_about() {
 }
 
 void print_menu() {
-    print("\nSuDu v1.4 - Google Sooner Dump Utility\n");
+    print("\nSuDu v1.4* - Google Sooner Dump Utility\n");
     print("============================================\n");
     show_sdcard_space();
     print("--------------------------------------------\n");
